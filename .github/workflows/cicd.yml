@@ -28,8 +28,12 @@ jobs:
       - name: Pull image from Docker Hub
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/reactjs-app:latest
 
-      - name: Delete old container if it exists
-        run: docker rm -f reactContainer || true
+      # - name: Delete old container if it exists
+      #   run: docker rm -f reactContainer || true
+
+      - name: Restart old container if it exists
+        run: docker restart reactContainer || true
+
 
       - name: Run Docker container
         run: docker run -d -p 3000:80 --name reactContainer ${{ secrets.DOCKER_USERNAME }}/reactjs-app:latest

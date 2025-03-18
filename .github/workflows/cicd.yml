@@ -16,7 +16,7 @@ jobs:
      - name: Build Docker Image
        run:  docker build -t reactjs-app .
      - name: Publish image to docker hub
-       run:  docker push reactjs-app:latest
+       run:  docker push ${{ secrets.DOCKER_USERNAME }}reactjs-app:latest
 
   deploy:
     needs: build
